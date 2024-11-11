@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import axios from "axios";
+import api from "../../lib/api";
+
 export default function CreateAdForm() {
   const {
     register,
@@ -11,7 +12,7 @@ export default function CreateAdForm() {
   const onSubmit = (data) => {
     console.log(data);
     // Send data to your backend here
-    axios.get("http://qbc8.boloorin.top:8080/healthz");
+    api.get("http://qbc8.boloorin.top:8080/healthz");
   };
 
   return (
