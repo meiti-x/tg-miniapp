@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import api from "../../../lib/api";
+import WebApp from "@twa-dev/sdk";
 
 export default function CreateAdForm() {
   const {
@@ -12,7 +13,10 @@ export default function CreateAdForm() {
   const onSubmit = (data) => {
     console.log(data);
     // Send data to your backend here
-    api.get("http://qbc8.boloorin.top:8080/healthz");
+    api
+      .post("/ad")
+      .then(() => WebApp?.showAlert("Created :)"))
+      .catch(() => WebApp?.showAlert("Couldnt Create :("));
   };
 
   return (
@@ -20,16 +24,20 @@ export default function CreateAdForm() {
       <label>Category:</label>
       <select {...register("category", { required: true })}>
         <option value="">Select Category</option>
-        <option value="apartment">Apartment</option>
-        <option value="house">House</option>
-        <option value="villa">Villa</option>
-        <option value="office">Office</option>
+        <option value="rent">rent</option>
+        <option value="buy">buy</option>
+        <option value="mortgage">mortgage</option>
+        <option value="other">other</option>
         {/* Add more categories as needed */}
       </select>
       {errors.category && <span>This field is required</span>}
 
       <label>Author:</label>
-      <input type="text" {...register("author")} />
+      <input
+        type="text"
+        value={WebApp?.initDataUnsafe?.user?.first_name}
+        {...register("author")}
+      />
 
       <label>URL:</label>
       <input type="url" {...register("url")} />
@@ -49,10 +57,9 @@ export default function CreateAdForm() {
       <label>House Type:</label>
       <select {...register("house_type", { required: true })}>
         <option value="">Select House Type</option>
-        <option value="detached">Detached</option>
-        <option value="semi-detached">Semi-Detached</option>
-        <option value="townhouse">Townhouse</option>
-        <option value="condo">Condo</option>
+        <option value="apartment">apartment</option>
+        <option value="villa">villa</option>
+        <option value="other">other</option>
         {/* Add more house types as needed */}
       </select>
       {errors.house_type && <span>This field is required</span>}

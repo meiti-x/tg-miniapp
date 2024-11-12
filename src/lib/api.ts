@@ -1,11 +1,12 @@
+import WebApp from "@twa-dev/sdk";
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://your-api-endpoint.com/api/",
+  baseURL: "http://qbc8.boloorin.top:8080",
   timeout: 10000,
   headers: {
     "Content-Type": "application/json",
-    // 'Authorization': `Bearer ${localStorage.getItem('token')}`,
+    Authorization: WebApp?.initDataUnsafe?.user?.id,
   },
 });
 

@@ -4,8 +4,15 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './components/Home'
 import CreateAd from './components/Ad/Create'
 import DeleteAd from './components/Ad/Delete'
+import { useEffect } from 'react';
+import WebApp from '@twa-dev/sdk';
 
 function App() {
+  useEffect(() => {
+    WebApp.expand();
+    WebApp.MainButton.setText("Click me");
+    WebApp.MainButton.show();
+  }, []);
   return (
     <Routes>
         <Route path="/"  Component={() => <Home/>} />
