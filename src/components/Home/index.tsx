@@ -7,12 +7,31 @@ export default function Home() {
   return (
     <div>
       <h4>Welcome {WebApp?.initDataUnsafe?.user?.first_name}</h4>
+
+      <div>
+      <h5>Profile:</h5>
+      <div className="actions">
+        <button style={{width:"100%",backgroundColor:'#444'}} onClick={() => navigate("/ad/create")}>Search</button>
+      </div>
+     </div>
+     <div>
       <h5>Ad Actions:</h5>
       <div className="actions">
         <button onClick={() => navigate("/ad/create")}>Create ad</button>
         <button onClick={() => navigate("/ad/delete")}>Delete ad</button>
         <button onClick={() => navigate("/ad/update")}>Update ad</button>
       </div>
+     </div>
+
+
+     <div>
+      <h5>Profile:</h5>
+      <div className="actions">
+        <button onClick={() => navigate("/ad/create")}>My ads</button>
+        <button onClick={() => navigate("/ad/delete")}>Watchlist</button>
+        <button onClick={() => navigate("/ad/update")}>Filters</button>
+      </div>
+     </div>
     </div>
   );
 }

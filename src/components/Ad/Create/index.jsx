@@ -72,14 +72,41 @@ export default function CreateAdForm() {
       <label>Total Floors:</label>
       <input type="number" {...register("total_floors")} />
 
-      <label>Has Warehouse:</label>
-      <input type="checkbox" {...register("has_warehouse")} />
+      <div style={{ display: "flex" }}>
+        <label style={{ width: "100%" }} for="has_warehouse">
+          Has Warehouse:
+        </label>
+        <input
+          style={{ flex: "0 15 0" }}
+          type="checkbox"
+          id="has_warehouse"
+          {...register("has_warehouse")}
+        />
+      </div>
 
-      <label>Has Elevator:</label>
-      <input type="checkbox" {...register("has_elevator")} />
+      <div style={{ display: "flex" }}>
+        <label style={{ width: "100%" }} for="has_elevator">
+          Has Elevator:
+        </label>
+        <input
+          style={{ flex: "0 15 0" }}
+          type="checkbox"
+          id="has_elevator"
+          {...register("has_elevator")}
+        />
+      </div>
 
-      <label>Has Parking:</label>
-      <input type="checkbox" {...register("has_parking")} />
+      <div style={{ display: "flex" }}>
+        <label style={{ width: "100%" }} for="has_parking">
+          Has Parking:
+        </label>
+        <input
+          style={{ flex: "0 15 0" }}
+          type="checkbox"
+          id="has_parking"
+          {...register("has_parking")}
+        />
+      </div>
 
       <label>Latitude:</label>
       <input type="number" step="0.000001" {...register("lat")} />
