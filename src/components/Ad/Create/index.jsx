@@ -16,7 +16,7 @@ export default function CreateAdForm() {
     api
       .post("/ad")
       .then(() => WebApp?.showAlert("Created :)"))
-      .catch(() => WebApp?.showAlert("Couldnt Create :("));
+      .catch(() => WebApp?.showAlert("Task Successfully Failed"));
   };
 
   return (

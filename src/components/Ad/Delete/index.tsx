@@ -1,12 +1,15 @@
 import { useForm } from 'react-hook-form';
 import api from '../../../lib/api';
+import WebApp from '@twa-dev/sdk';
 
 export default function DeleteForm() {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = async (data) => {
     const {id} = data
-    api.delete(`/ad/delete/${id}`).then().catch()
+    api.delete(`/ad/${id}`)
+     .then(() => WebApp?.showAlert("Deleted :)"))
+      .catch(() => WebApp?.showAlert("Task Successfully Failed"));
   };
 
   return (
