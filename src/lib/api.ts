@@ -6,9 +6,11 @@ const api = axios.create({
   timeout: 10000,
   headers: {
     "Content-Type": "application/json",
+    Accept: "application/json",
     Authorization: WebApp?.initDataUnsafe?.user?.id,
   },
 });
+api.defaults.withCredentials = true;
 
 api.interceptors.request.use(
   (config) => {
