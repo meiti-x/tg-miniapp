@@ -9,7 +9,7 @@ export default function DeleteForm() {
     const {id} = data
     api.delete(`/ad/${id}`)
      .then(() => WebApp?.showAlert("Deleted :)"))
-      .catch(() => WebApp?.showAlert("Task Successfully Failed"));
+      .catch((res) => WebApp?.showAlert("Task Successfully Failed "+res?.message));
   };
 
   return (
