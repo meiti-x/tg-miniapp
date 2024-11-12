@@ -14,6 +14,8 @@ function App() {
     WebApp.MainButton.setText("Back To Homepage");
     WebApp.MainButton.show();
     WebApp.MainButton.onClick(()=> navigate("/"))
+
+    WebApp.BackButton.show
   }, []);
   return (
     <Routes>
