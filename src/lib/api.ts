@@ -2,7 +2,7 @@ import WebApp from "@twa-dev/sdk";
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://qbc8.boloorin.top:8080",
+  baseURL: "https://qbc8.boloorin.top:8080",
   timeout: 10000,
   headers: {
     "Content-Type": "application/json",
