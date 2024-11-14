@@ -2,22 +2,19 @@ import WebApp from "@twa-dev/sdk";
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://qbc8.boloorin.top",
+  baseURL: "http://localhost:1100",
   timeout: 10000,
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",
-    Authorization: WebApp?.initDataUnsafe?.user?.id,
+    // Authorization: WebApp?.initDataUnsafe?.user?.id,
   },
 });
 api.defaults.withCredentials = true;
 
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("token"); // Example token from localStorage
-    if (token) {
-      config.headers["Authorization"] = `Bearer ${token}`;
-    }
+    config.headers["Authorization"] = `319280055`;
     return config;
   },
   (error) => {
