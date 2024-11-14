@@ -5,6 +5,7 @@ import Home from './components/Home'
 import CreateAd from './components/Ad/Create'
 import UpdateAd from './components/ad/Update'
 import DeleteAd from './components/Ad/Delete'
+import MyAds from './components/Ad/My'
 import { useEffect } from 'react';
 import WebApp from '@twa-dev/sdk';
 
@@ -29,7 +30,7 @@ function App() {
         <Route path="/search" Component={() => <DeleteAd/>} />
         <Route path="/search/:id" Component={() => <DeleteAd/>} />
         {/* profile  */}
-        <Route path="/profile/ads" Component={() => <DeleteAd/>} />
+        <Route path="/profile/ads" Component={() => <MyAds/>} />
         <Route path="/profile/watchlist" Component={() => <DeleteAd/>} />
         <Route path="/profile/filters" Component={() => <DeleteAd/>} />
     </Routes>
