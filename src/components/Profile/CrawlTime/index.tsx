@@ -19,7 +19,7 @@ const CrawlTimeForm = () => {
               required: 'Crawl time is required',
             })}
           />
-          {errors.crawlTime && <p>{errors.crawlTime.message}</p>}
+          {errors.crawlTime && <p>{errors?.crawlTime?.message}</p>}
         </div>
 
         <div>

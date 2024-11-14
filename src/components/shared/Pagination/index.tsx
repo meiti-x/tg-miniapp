@@ -6,7 +6,6 @@ const Pagination = ({ totalPages }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Update the currentPage based on query param
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
     const pageFromQuery = queryParams.get('page');
@@ -16,13 +15,11 @@ const Pagination = ({ totalPages }) => {
     }
   }, [location.search]);
 
-  // Handle page change and update the query parameter
   const handlePageChange = (page) => {
     setCurrentPage(page);
     navigate(`?page=${page}`);
   };
 
-  // Generate pagination numbers
   const pageNumbers = [];
   for (let i = 1; i <= totalPages; i++) {
     pageNumbers.push(i);
