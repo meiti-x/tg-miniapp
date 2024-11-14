@@ -6,7 +6,7 @@ const proxyUrl = new URL("https://localhost:1100");
 const proxyHost = proxyUrl.hostname;
 const proxyPort = proxyUrl.port;
 const apiBaseUrl = "http://localhost:8080";
-const origin = "https://localhost:8080";
+const origin = "http://localhost:8080";
 const forwardHost = new URL(apiBaseUrl).hostname;
 
 console.log(

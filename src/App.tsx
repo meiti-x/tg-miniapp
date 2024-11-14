@@ -8,6 +8,7 @@ import DeleteAd from './components/Ad/Delete'
 import MyAds from './components/Ad/My'
 import Crawl from './components/Profile/CrawlTime'
 import Search from './components/Search'
+import WatchList from './components/Profile/WatchList'
 
 import { useEffect } from 'react';
 import WebApp from '@twa-dev/sdk';
@@ -25,7 +26,7 @@ function App() {
   return (
     <Routes>
         <Route path="/"  Component={() => <Home/>} />
-        {/* Ads */}
+        {/* Ads action: only for admin */}
         <Route path="/ad/create" Component={() => <CreateAd/>} />
         <Route path="/ad/update" Component={() => <UpdateAd/>} />
         <Route path="/ad/delete" Component={() => <DeleteAd/>} />
@@ -34,8 +35,7 @@ function App() {
         {/* profile  */}
         <Route path="/profile/ads" Component={() => <MyAds/>} />
         <Route path="/profile/crawl" Component={() => <Crawl/>} />
-
-        <Route path="/profile/watchlist" Component={() => <DeleteAd/>} />
+        <Route path="/profile/watchlist" Component={() => <WatchList/>} />
         <Route path="/profile/filters" Component={() => <DeleteAd/>} />
     </Routes>
   )

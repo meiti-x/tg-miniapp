@@ -67,7 +67,9 @@
   flex-direction: row;
   flex-wrap: wrap;
   gap: 2px;
+  justify-content: center;
 }
-.search-form > label {
+
+.search-form > * {
   width: 50%;
 }
