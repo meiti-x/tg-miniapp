@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import "./AdList.css";
+import { useState } from "react";
+import "./adlist.css";
 
 const AdList = ({ ads }) => {
   const [selectedAd, setSelectedAd] = useState(null);
