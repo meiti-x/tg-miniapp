@@ -28,7 +28,7 @@ export default function Home() {
      <div>
       <h5>Profile:</h5>
       <div className="actions">
-        <button onClick={() => navigate("/ad/create")}>My ads</button>
+        <button onClick={() => navigate("/profile/ads")}>My ads</button>
         <button onClick={() => navigate("/ad/delete")}>Watchlist</button>
         <button onClick={() => navigate("/ad/update")}>Filters</button>
       </div>
