@@ -3,7 +3,7 @@ import './App.css'
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import Home from './components/Home'
 import CreateAd from './components/Ad/Create'
-import UpdateAd from './components/ad/Update'
+import UpdateAd from './components/Ad/Update'
 import DeleteAd from './components/Ad/Delete'
 import MyAds from './components/Ad/My'
 import Crawl from './components/Profile/CrawlTime'
