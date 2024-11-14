@@ -5,8 +5,8 @@ import httpProxy from "http-proxy";
 const proxyUrl = new URL("https://localhost:1100");
 const proxyHost = proxyUrl.hostname;
 const proxyPort = proxyUrl.port;
-const apiBaseUrl = "http://localhost:8080";
-const origin = "http://localhost:8080";
+const apiBaseUrl = "https://qbc8.boloorin.top";
+const origin = "https://qbc8.boloorin.top";
 const forwardHost = new URL(apiBaseUrl).hostname;
 
 console.log(

@@ -1,11 +1,20 @@
-import { hardcodedAds } from "../../../utils";
 import AdList from "../../shared/AdList";
+import { useEffect, useState } from "react";
+import api from "../../../lib/api";
 
 const App = () => {
+    const [ads,setAds]= useState()
+
+    useEffect(()=>{
+        api.get('/user/ad').then(res=>{
+        setAds(res.data.message)    
+    })
+    },[])
   return (
     <div className="App">
       <h1>Ad Listings</h1>
-      <AdList ads={hardcodedAds} />
+      <AdList ads={ads} />
+      {/* <Pagination/> */}
     </div>
   );
 };

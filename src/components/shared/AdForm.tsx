@@ -60,7 +60,6 @@ export function AdForm({ isUpdate = false }) {
       .catch(() => WebApp?.showAlert("Task Successfully Failed"));
   };
 
-  console.log({step})
   if (step === 1) {
     return (
       <div>

@@ -9,11 +9,11 @@ const api = axios.create({
     // Authorization: WebApp?.initDataUnsafe?.user?.id,
   },
 });
-api.defaults.withCredentials = true;
+// api.defaults.withCredentials = true;
 
 api.interceptors.request.use(
   (config) => {
-    config.headers["Authorization"] = `319280055`;
+    config.headers["Authorization"] = `12345`;
     return config;
   },
   (error) => {
@@ -24,9 +24,6 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response && error.response.status === 401) {
-      window.location.href = "/login"; // Redirect to login page
-    }
     return Promise.reject(error);
   }
 );
