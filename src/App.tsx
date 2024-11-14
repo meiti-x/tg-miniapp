@@ -7,6 +7,7 @@ import UpdateAd from './components/Ad/Update'
 import DeleteAd from './components/Ad/Delete'
 import MyAds from './components/Ad/My'
 import Crawl from './components/Profile/CrawlTime'
+import Search from './components/Search'
 
 import { useEffect } from 'react';
 import WebApp from '@twa-dev/sdk';
@@ -29,8 +30,7 @@ function App() {
         <Route path="/ad/update" Component={() => <UpdateAd/>} />
         <Route path="/ad/delete" Component={() => <DeleteAd/>} />
         {/* Search */}
-        <Route path="/search" Component={() => <DeleteAd/>} />
-        <Route path="/search/:id" Component={() => <DeleteAd/>} />
+        <Route path="/search" Component={() => <Search/>} />
         {/* profile  */}
         <Route path="/profile/ads" Component={() => <MyAds/>} />
         <Route path="/profile/crawl" Component={() => <Crawl/>} />

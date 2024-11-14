@@ -49,3 +49,25 @@
 .error-input {
   border: 1px solid red;
 }
+
+.pagination {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+}
+.pagination button {
+  background-color: #555;
+}
+.active-page {
+  background-color: darkgoldenrod !important;
+}
+
+.search-form {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 2px;
+}
+.search-form > label {
+  width: 33%;
+}

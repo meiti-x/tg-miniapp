@@ -12,7 +12,7 @@ export default function Home() {
       <div>
       <h5>Profile:</h5>
       <div className="actions">
-        <button style={{width:"100%",backgroundColor:'#444'}} onClick={() => navigate("/ad/create")}>Search</button>
+        <button style={{width:"100%",backgroundColor:'#444'}} onClick={() => navigate("/search")}>Search</button>
       </div>
      </div>
      <div>

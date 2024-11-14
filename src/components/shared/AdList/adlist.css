@@ -13,6 +13,7 @@
   background-color: #f9f9f9;
   cursor: pointer;
   transition: transform 0.2s;
+  margin: auto;
 }
 
 .ad-card:hover {

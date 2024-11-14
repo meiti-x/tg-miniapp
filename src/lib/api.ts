@@ -1,4 +1,3 @@
-import WebApp from "@twa-dev/sdk";
 import axios from "axios";
 
 const api = axios.create({
