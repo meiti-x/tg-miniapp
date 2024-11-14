@@ -19,7 +19,7 @@ export default function Home() {
       <h4>Welcome {WebApp?.initDataUnsafe?.user?.first_name}</h4>
 
      {
-      user?.role?.user_role === "simple" ? (
+      user?.role?.user_role !== "simple" ? (
         <div>
         <h3>Admin Setting:</h3>
         <div className="actions">
@@ -27,6 +27,7 @@ export default function Home() {
           <button onClick={() => navigate("/profile/crawl")}>Crawl Time</button>
           <button onClick={() => navigate("/ad/create")}>Create</button>
           <button onClick={() => navigate("/ad/delete")}>Delete</button>
+          <button onClick={() => navigate("/ad/price")}>Price</button>
           <button onClick={() => navigate("/profile/ads")}>My ads</button>
 
           {/* <button onClick={() => navigate("/ad/update")}>Update</button> */}
