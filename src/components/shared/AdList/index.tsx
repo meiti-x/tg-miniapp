@@ -1,21 +1,23 @@
 import { useState, useEffect } from "react";
 import "./adlist.css";
 import api from "../../../lib/api";
+import { useNavigate } from "react-router-dom";
 
 const AdList = ({ ads }) => {
   const [selectedAd, setSelectedAd] = useState(null);
+  const [price, setPrice] = useState(null);
   const [isBookmarked, setIsBookmarked] = useState(false);
-
+  const navigate = useNavigate()
   useEffect(() => {
-    // Disable scrolling when the modal is open
     if (selectedAd) {
-      document.body.style.overflow = "hidden";
+      // document.body.style.overflow = "hidden";
       checkBookmarkStatus(selectedAd.id);
+      getPrice(selectedAd.id)
     } else {
-      document.body.style.overflow = "auto";
+      // document.body.style.overflow = "auto";
     }
     return () => {
-      document.body.style.overflow = "auto";
+      // document.body.style.overflow = "auto";
     };
   }, [selectedAd]);
 
@@ -30,6 +32,12 @@ const AdList = ({ ads }) => {
   const checkBookmarkStatus = async (adId) => {
     api.get(`/user/favorite/${adId}`).then(data=>{
       setIsBookmarked(data.data.isBookmarked);
+    })
+  };
+
+  const getPrice = async (adId) => {
+    api.get(`/price/${adId}`).then(data=>{
+      setPrice(data.data.message);
     })
   };
 
@@ -63,6 +71,30 @@ const AdList = ({ ads }) => {
         <div className="modal-overlay" onClick={closeModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <h2>{selectedAd.title}</h2>
+
+            <div className="actions">
+              <button
+                onClick={toggleFavorite}
+                style={{ backgroundColor: isBookmarked ? "red" : "black", color: "white" }}
+              >
+                {isBookmarked ? "Remove Favorite" : "Add to Favorite"}
+              </button>
+              <button
+                onClick={()=> navigate(`/price/${selectedAd.id}`) }
+                style={{ backgroundColor:  "black", color: "white" }}
+            
+              >
+                Price changes
+              </button>
+            </div>
+            
+          {price?.mortgage && <p><strong>mortgage:</strong> {price?.mortgage}</p>}
+          {price?.normal_price && <p><strong>normal_price:</strong> {price?.normal_price}</p>}
+          {price?.price_per_meter && <p><strong>price_per_meter:</strong> {price?.price_per_meter}</p>}
+          {price?.total_price && <p><strong>total price:</strong> {price?.total_price}</p>}
+          {price?.weekend_price && <p><strong>weekend price:</strong> {price?.weekend_price}</p>}
+    
+            
             <p><strong>Category:</strong> {selectedAd.category}</p>
             <p><strong>Author:</strong> {selectedAd.author}</p>
             <p><strong>Description:</strong> {selectedAd.description}</p>
@@ -76,12 +108,7 @@ const AdList = ({ ads }) => {
             <p><strong>Elevator:</strong> {selectedAd.has_elevator ? "Yes" : "No"}</p>
             <p><strong>Parking:</strong> {selectedAd.has_parking ? "Yes" : "No"}</p>
             <button onClick={closeModal}>Close</button>
-            <button
-              onClick={toggleFavorite}
-              style={{ backgroundColor: isBookmarked ? "red" : "black", color: "white" }}
-            >
-              {isBookmarked ? "Remove Favorite" : "Add to Favorite"}
-            </button>
+            
           </div>
         </div>
       )}

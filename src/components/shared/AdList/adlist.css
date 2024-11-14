@@ -39,6 +39,8 @@
   border-radius: 8px;
   width: 400px;
   max-width: 90%;
+  max-height: 80vh;
+  overflow: scroll;
 }
 
 .modal-content h2 {

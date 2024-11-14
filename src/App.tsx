@@ -6,6 +6,8 @@ import CreateAd from './components/Ad/Create'
 import UpdateAd from './components/Ad/Update'
 import DeleteAd from './components/Ad/Delete'
 import MyAds from './components/Ad/My'
+import AdPrice from './components/Ad/Price'
+import AdPriceDetail from './components/Ad/Price/PriceDetail'
 import Crawl from './components/Profile/CrawlTime'
 import Search from './components/Search'
 import WatchList from './components/Profile/WatchList'
@@ -30,6 +32,8 @@ function App() {
         <Route path="/ad/create" Component={() => <CreateAd/>} />
         <Route path="/ad/update" Component={() => <UpdateAd/>} />
         <Route path="/ad/delete" Component={() => <DeleteAd/>} />
+        <Route path="/ad/price" Component={() => <AdPrice/>} />
+        <Route path="/ad/price/:id" Component={() => <AdPriceDetail/>} />
         {/* Search */}
         <Route path="/search" Component={() => <Search/>} />
         {/* profile  */}
