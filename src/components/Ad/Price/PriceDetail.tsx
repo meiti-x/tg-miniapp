@@ -27,7 +27,7 @@ const AdForm = () => {
       };
   
     console.log("Form Submitted:", convertedData);
-    api.post('/price',convertedData)
+    api.post('/api/v1/price',convertedData)
 };
 
   return (

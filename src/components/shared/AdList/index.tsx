@@ -5,14 +5,15 @@ import { useNavigate } from "react-router-dom";
 
 const AdList = ({ ads }) => {
   const [selectedAd, setSelectedAd] = useState(null);
+  const [currentAd, setCurrentAd] = useState(null);
   const [price, setPrice] = useState(null);
   const [isBookmarked, setIsBookmarked] = useState(false);
   const navigate = useNavigate()
   useEffect(() => {
     if (selectedAd) {
       // document.body.style.overflow = "hidden";
-      checkBookmarkStatus(selectedAd.id);
       getPrice(selectedAd.id)
+      getAd(selectedAd.id)
     } else {
       // document.body.style.overflow = "auto";
     }
@@ -29,14 +30,15 @@ const AdList = ({ ads }) => {
     setSelectedAd(null);
   };
 
-  const checkBookmarkStatus = async (adId) => {
-    api.get(`/user/favorite/${adId}`).then(data=>{
-      setIsBookmarked(data.data.isBookmarked);
+  const getAd = async (adId) => {
+    api.get(`/api/v1/ad/${adId}`).then(data=>{
+      setCurrentAd(data.data);
     })
   };
 
+
   const getPrice = async (adId) => {
-    api.get(`/price/${adId}`).then(data=>{
+    api.get(`/api/v1/price/${adId}`).then(data=>{
       setPrice(data.data.message);
     })
   };
@@ -79,6 +81,7 @@ const AdList = ({ ads }) => {
               >
                 {isBookmarked ? "Remove Favorite" : "Add to Favorite"}
               </button>
+              
               <button
                 onClick={()=> navigate(`/price/${selectedAd.id}`) }
                 style={{ backgroundColor:  "black", color: "white" }}
@@ -87,7 +90,8 @@ const AdList = ({ ads }) => {
                 Price changes
               </button>
             </div>
-            
+
+          {price?.id && <p><strong>ID:</strong> {price?.id}</p>}
           {price?.mortgage && <p><strong>mortgage:</strong> {price?.mortgage}</p>}
           {price?.normal_price && <p><strong>normal_price:</strong> {price?.normal_price}</p>}
           {price?.price_per_meter && <p><strong>price_per_meter:</strong> {price?.price_per_meter}</p>}
@@ -96,6 +100,7 @@ const AdList = ({ ads }) => {
     
             
             <p><strong>Category:</strong> {selectedAd.category}</p>
+            {/* <p><strong>ID:</strong> {selectedAd.id}</p> */}
             <p><strong>Author:</strong> {selectedAd.author}</p>
             <p><strong>Description:</strong> {selectedAd.description}</p>
             <p><strong>Location:</strong> {selectedAd.city}, {selectedAd.neighborhood}</p>

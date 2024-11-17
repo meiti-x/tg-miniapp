@@ -9,7 +9,7 @@ export default function Home() {
   const [user,setUser]= useState(null)
 
   useEffect(()=>{
-    api.get("/user").then(res=>{
+    api.get("/api/v1/user").then(res=>{
       setUser(res?.data?.message)
     })
   },[])

@@ -52,8 +52,8 @@ export function AdForm({ isUpdate = false }) {
     };
 
     const apiCall = isUpdate
-      ? api.put(`/ad/${adId}`, payload)
-      : api.post("/ad", payload);
+      ? api.put(`/api/v1/ad/${adId}`, payload)
+      : api.post("/api/v1/ad", payload);
 
     apiCall
       .then(() => WebApp?.showAlert(isUpdate ? "Updated :)" : "Created :)"))

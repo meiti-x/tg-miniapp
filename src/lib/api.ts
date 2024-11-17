@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:1100",
+  baseURL: "https://qbc8.boloorin.top",
   timeout: 10000,
   headers: {
     "Content-Type": "application/json",

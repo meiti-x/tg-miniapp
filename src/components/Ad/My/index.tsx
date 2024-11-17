@@ -6,7 +6,7 @@ const App = () => {
     const [ads,setAds]= useState()
 
     useEffect(()=>{
-        api.get('/user/ad').then(res=>{
+        api.get('/api/v1/user/ad').then(res=>{
         setAds(res.data.message)    
     })
     },[])
