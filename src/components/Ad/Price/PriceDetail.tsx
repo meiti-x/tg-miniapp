@@ -1,97 +1,67 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import api from '../../../lib/api';
+import {useEffect, useState} from 'react';
+import { Bar } from 'react-chartjs-2';
+import api from "../../../lib/api.ts"
 
-const AdForm = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm({
-    defaultValues: {
-      ad_id: null,
-      has_price: true,
-      total_price: null,
-      price_per_meter: null,
-      mortgage: null,
-      normal_price: null,
-      weekend_price: null,
-    }
-  });
+export default function PricingChart() {
+const [data,setData] = useState(null);
+    useEffect(() => {
+        api.get("/api/v1/price/10/all").then(res=>{
+            setData(res.data);
+        })
+    }, []);
+    const chartData = {
+        labels: data?.map((item) => item.type), // Types: 'buy', 'mortgage', 'rent'
+        datasets: [
+            {
+                label: 'Total Price (Buy)',
+                data: data?.map((item) => item.total_price || 0), // Use 0 if total_price is undefined
+                backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1,
+            },
+            {
+                label: 'Price per Meter (Buy)',
+                data: data?.map((item) => item.price_per_meter || 0),
+                backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1,
+            },
+            {
+                label: 'Mortgage (Mortgage)',
+                data: data?.map((item) => item.mortgage || 0),
+                backgroundColor: 'rgba(255, 206, 86, 0.6)',
+                borderColor: 'rgba(255, 206, 86, 1)',
+                borderWidth: 1,
+            },
+            {
+                label: 'Normal Price',
+                data: data?.map((item) => item.normal_price || 0),
+                backgroundColor: 'rgba(255, 99, 132, 0.6)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1,
+            },
+            {
+                label: 'Weekend Price (Rent)',
+                data: data?.map((item) => item.weekend_price || 0),
+                backgroundColor: 'rgba(153, 102, 255, 0.6)',
+                borderColor: 'rgba(153, 102, 255, 1)',
+                borderWidth: 1,
+            },
+        ],
+    };
 
-  const onSubmit = (data) => {
-    const convertedData = {
-        ...data,
-        ad_id: parseInt(data.ad_id, 10),
-        total_price: data.total_price ? parseInt(data.total_price, 10) : null,
-        price_per_meter: data.price_per_meter ? parseInt(data.price_per_meter, 10) : null,
-        mortgage: parseInt(data.mortgage, 10),
-        normal_price: parseInt(data.normal_price, 10),
-        weekend_price: data.weekend_price ? parseInt(data.weekend_price, 10) : null,
-      };
-  
-    console.log("Form Submitted:", convertedData);
-    api.post('/api/v1/price',convertedData)
-};
+    const options = {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top',
+            },
+            title: {
+                display: true,
+                text: 'Pricing Data Overview',
+            },
+        },
+    };
 
-  return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <label>
-        Ad ID:
-        <input
-          type="number"
-          {...register("ad_id", { required: "Ad ID is required" })}
-        />
-        {errors.ad_id && <p>{errors.ad_id.message}</p>}
-      </label>
-
-      <label>
-        Has Price:
-        <input
-          type="checkbox"
-          {...register("has_price")}
-        />
-      </label>
-
-      <label>
-        Total Price:
-        <input
-          type="number"
-          {...register("total_price")}
-        />
-      </label>
-
-      <label>
-        Price Per Meter:
-        <input
-          type="number"
-          {...register("price_per_meter")}
-        />
-      </label>
-
-      <label>
-        Mortgage:
-        <input
-          type="number"
-          {...register("mortgage")}
-        />
-      </label>
-
-      <label>
-        Normal Price:
-        <input
-          type="number"
-          {...register("normal_price")}
-        />
-      </label>
-
-      <label>
-        Weekend Price:
-        <input
-          type="number"
-          {...register("weekend_price")}
-        />
-      </label>
-
-      <button type="submit">Submit</button>
-    </form>
-  );
-};
-
-export default AdForm;
+    return <Bar data={chartData} options={options} />;
+}

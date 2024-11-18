@@ -8,7 +8,7 @@ import DeleteAd from './components/Ad/Delete'
 import MyAds from './components/Ad/My'
 import AdPrice from './components/Ad/Price'
 import AdPriceDetail from './components/Ad/Price/PriceDetail'
-import Crawl from './components/Profile/CrawlTime'
+// import Crawl from './components/Profile/CrawlTime'
 import Search from './components/Search'
 import WatchList from './components/Profile/WatchList'
 
@@ -38,7 +38,7 @@ function App() {
         <Route path="/search" Component={() => <Search/>} />
         {/* profile  */}
         <Route path="/profile/ads" Component={() => <MyAds/>} />
-        <Route path="/profile/crawl" Component={() => <Crawl/>} />
+        {/* <Route path="/profile/crawl" Component={() => <Crawl/>} /> */}
         <Route path="/profile/watchlist" Component={() => <WatchList/>} />
         <Route path="/profile/filters" Component={() => <DeleteAd/>} />
     </Routes>

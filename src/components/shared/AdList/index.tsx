@@ -14,6 +14,10 @@ const AdList = ({ ads }) => {
       // document.body.style.overflow = "hidden";
       getPrice(selectedAd.id)
       getAd(selectedAd.id)
+      api.get(`/api/v1/ad/${selectedAd.id}`).then(res=>{
+        console.log(res?.data)
+        setIsBookmarked(res?.data?.message?.favorite_status)
+      })
     } else {
       // document.body.style.overflow = "auto";
     }
@@ -46,9 +50,9 @@ const AdList = ({ ads }) => {
   const toggleFavorite = async () => {
     try {
       if (isBookmarked){
-        api.delete(`/user/favorite/${selectedAd.id}`)
+        api.delete(`/api/v1/user/favorite/${selectedAd.id}`)
       }else{
-        api.post(`/user/favorite/${selectedAd.id}`)
+        api.post(`/api/v1/user/favorite/${selectedAd.id}`)
       }
 
       setIsBookmarked(!isBookmarked);

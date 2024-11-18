@@ -3,7 +3,7 @@ import "./home.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import api from "../../lib/api";
-("@twa-dev/sdk");
+
 export default function Home() {
   const navigate = useNavigate();
   const [user,setUser]= useState(null)
@@ -23,8 +23,8 @@ export default function Home() {
         <div>
         <h3>Admin Setting:</h3>
         <div className="actions">
-          <button style={{width:"100%"}} onClick={() => navigate("/search")}>Start the Crawler</button>
-          <button onClick={() => navigate("/profile/crawl")}>Crawl Time</button>
+          {/* <button style={{width:"100%"}} onClick={() => navigate("/search")}>Start the Crawler</button> */}
+          {/* <button onClick={() => navigate("/profile/crawl")}>Crawl Time</button> */}
           <button onClick={() => navigate("/ad/create")}>Create</button>
           <button onClick={() => navigate("/ad/delete")}>Delete</button>
           <button onClick={() => navigate("/ad/price")}>Price</button>
