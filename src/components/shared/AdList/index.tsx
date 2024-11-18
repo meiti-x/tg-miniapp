@@ -87,7 +87,7 @@ const AdList = ({ ads }) => {
               </button>
               
               <button
-                onClick={()=> navigate(`/price/${selectedAd.id}`) }
+                onClick={()=> navigate(`/ad/price/${selectedAd.id}`) }
                 style={{ backgroundColor:  "black", color: "white" }}
             
               >

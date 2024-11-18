@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Pagination = ({ totalPages }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -8,8 +8,8 @@ const Pagination = ({ totalPages }) => {
 
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
-    const pageFromQuery = queryParams.get('page');
-    
+    const pageFromQuery = queryParams.get("page");
+
     if (pageFromQuery) {
       setCurrentPage(Number(pageFromQuery));
     }
@@ -20,10 +20,26 @@ const Pagination = ({ totalPages }) => {
     navigate(`?page=${page}`);
   };
 
-  const pageNumbers = [];
-  for (let i = 1; i <= totalPages; i++) {
-    pageNumbers.push(i);
-  }
+  const getVisiblePages = () => {
+    const visiblePages = [];
+
+    if (currentPage > 1) {
+      visiblePages.push(currentPage - 1);
+    }
+
+    visiblePages.push(currentPage);
+
+    if (currentPage + 1 <= totalPages) {
+      visiblePages.push(currentPage + 1);
+    }
+    if (currentPage + 2 <= totalPages) {
+      visiblePages.push(currentPage + 2);
+    }
+
+    return visiblePages;
+  };
+
+  const visiblePages = getVisiblePages();
 
   return (
     <div className="pagination">
@@ -34,11 +50,11 @@ const Pagination = ({ totalPages }) => {
         Previous
       </button>
 
-      {pageNumbers.map((page) => (
+      {visiblePages.map((page) => (
         <button
           key={page}
           onClick={() => handlePageChange(page)}
-          className={currentPage === page ? 'active-page' : ''}
+          className={currentPage === page ? "active-page" : ""}
         >
           {page}
         </button>

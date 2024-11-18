@@ -1,3 +1,4 @@
+import WebApp from "@twa-dev/sdk";
 import axios from "axios";
 
 const api = axios.create({
@@ -6,14 +7,14 @@ const api = axios.create({
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",
-    // Authorization: WebApp?.initDataUnsafe?.user?.id,
+    Authorization: WebApp?.initDataUnsafe?.user?.id,
   },
 });
 // api.defaults.withCredentials = true;
 
 api.interceptors.request.use(
   (config) => {
-    config.headers["Authorization"] = `319280055`;
+    // config.headers["Authorization"] = `319280055`;
     return config;
   },
   (error) => {
