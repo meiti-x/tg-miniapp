@@ -7,14 +7,13 @@ const api = axios.create({
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",
-    Authorization: WebApp?.initDataUnsafe?.user?.id,
   },
 });
 // api.defaults.withCredentials = true;
 
 api.interceptors.request.use(
   (config) => {
-    // config.headers["Authorization"] = `319280055`;
+    config.headers["Authorization"] = WebApp?.initDataUnsafe?.user?.id;
     return config;
   },
   (error) => {
